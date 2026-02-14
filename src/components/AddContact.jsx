@@ -21,7 +21,7 @@ export default function AddContact({ onAdd }) {
         onChange={(e) => setName(e.target.value)}
       />
       <input
-        placeholder="Teléfono"
+        placeholder="Telefono"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
       />

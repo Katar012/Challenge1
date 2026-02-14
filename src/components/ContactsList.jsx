@@ -7,7 +7,7 @@ export default function ContactsList({ contacts, onDelete }) {
   }
 
   return (
-    <div className="contacts">
+    <div className="contactos">
       {contacts.map((c) => (
         <div className="contact" key={c.id}>
           <div className="info">

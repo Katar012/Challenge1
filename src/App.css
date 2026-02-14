@@ -1,0 +1,82 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/*Diseño*/
+.app {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  max-width: 720px;
+  margin: 1.5rem auto;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.meta { color: #444; font-size: 0.9rem; display:flex; gap:1rem }
+
+main { display: grid; gap: 1rem }
+
+/* Cargando */
+.loader { display:flex; flex-direction:column; align-items:center; gap:0.75rem; padding:2rem }
+.spinner {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 5px solid #e6e6e6; border-top-color: #4f46e5; animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.add-form { display:flex; gap:0.5rem; align-items:flex-start }
+.add-form input { padding:0.5rem; border-radius:6px; border:1px solid #ddd }
+.add-form button { padding:0.55rem 0.75rem; border-radius:6px; background:#4f46e5; color:white; border:none; cursor:pointer }
+
+/* Contactos */
+.contacts { display:flex; flex-direction:column; gap:0.5rem }
+.contact { display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0.75rem; border-radius:6px; background:#fafafa; border:1px solid #eee }
+.contact .info { display:flex; gap:0.75rem; align-items:center }
+.contact .name { font-weight:600; color:black}
+.contact button { background:#ef4444; color:white; border:none; padding:0.4rem 0.6rem; border-radius:6px; cursor:pointer }
+
+.empty { color:#666; padding:1rem; text-align:center }

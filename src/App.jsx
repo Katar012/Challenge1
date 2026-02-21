@@ -3,6 +3,7 @@ import './App.css'
 import Loader from './components/Loader'
 import AddContact from './components/AddContact'
 import ContactsList from './components/ContactsList'
+import miImagen from './assets/user-avatar.png';
 
 const initialContactsData = [
   { id: 1, name: 'Jordas', phone: '555-1234' },
@@ -49,6 +50,7 @@ function App() {
   return (
     <div className="app">
       <header>
+        <img src={miImagen} alt="Logo" />
         <h1>Contacts</h1>
         <div className="meta">
           <div>Time: {time.toLocaleTimeString()}</div>

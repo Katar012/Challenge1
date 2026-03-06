@@ -17,7 +17,6 @@ export default function Login({ onLogin }) {
   function handleSubmit(e) {
     e.preventDefault()
 
-    // credentials must match fixed values
     if (user === 'user@mail.com' && pass === '123') {
       localStorage.setItem('logged', 'true')
       onLogin()

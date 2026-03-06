@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Login from './pages/Login'
 import List from './pages/List'
 
-// top-level app that handles routing and simple "authentication" state
 function App() {
   const [authenticated, setAuthenticated] = useState(
     localStorage.getItem('logged') === 'true'

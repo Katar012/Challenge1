@@ -17,7 +17,6 @@ export default function List({ onLogout }) {
   const [contacts, setContacts] = useState([])
   const [loading, setLoading] = useState(true)
 
-  // Simulate initial data loading
   useEffect(() => {
     const t = setTimeout(() => {
       setContacts(initialContactsData)

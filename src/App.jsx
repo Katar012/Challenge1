@@ -1,72 +1,45 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
-import Loader from './components/Loader'
-import AddContact from './components/AddContact'
-import ContactsList from './components/ContactsList'
-import miImagen from './assets/user-avatar.png';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import Login from './pages/Login'
+import List from './pages/List'
 
-const initialContactsData = [
-  { id: 1, name: 'Jordas', phone: '555-1234' },
-  { id: 2, name: 'Dasjor', phone: '555-5678' },
-  { id: 3, name: 'Silverstein', phone: '555-9012' },
-]
-
+// top-level app that handles routing and simple "authentication" state
 function App() {
-  const [contacts, setContacts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [time, setTime] = useState(new Date())
-
-  // Simulate initial data loading
-  useEffect(() => {
-    const t = setTimeout(() => {
-      setContacts(initialContactsData)
-      setLoading(false)
-    }, 1800)
-    return () => clearTimeout(t)
-  }, [])
-
-  // Un reloj de mas
-  useEffect(() => {
-    const id = setInterval(() => setTime(new Date()), 1000)
-    return () => clearInterval(id)
-  }, [])
-
-  // Añadir contacto
-  function addContact(name, phone) {
-    const id = Date.now()
-    const newContact = { id, name, phone }
-    setContacts((c) => [newContact, ...c])
-    console.log('Added contact', newContact)
-  }
-
-  // Borrar contacto
-  function deleteContact(id) {
-    setContacts((c) => c.filter((x) => x.id !== id))
-    console.log('Deleted contact id', id)
-  }
-
-  console.log('contacts count:', contacts.length)
+  const [authenticated, setAuthenticated] = useState(
+    localStorage.getItem('logged') === 'true'
+  )
 
   return (
-    <div className="app">
-      <header>
-        <img src={miImagen} alt="Logo" />
-        <h1>Contacts</h1>
-        <div className="meta">
-          <div>Time: {time.toLocaleTimeString()}</div>
-          <div>Items: {contacts.length}</div>
-        </div>
-      </header>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          {authenticated ? <Redirect to="/list" /> : <Redirect to="/login" />}
+        </Route>
 
-      {loading ? (
-        <Loader />
-      ) : (
-        <main>
-          <AddContact onAdd={addContact} />
-          <ContactsList contacts={contacts} onDelete={deleteContact} />
-        </main>
-      )}
-    </div>
+        <Route path="/login">
+          <Login onLogin={() => setAuthenticated(true)} />
+        </Route>
+
+        <Route path="/list">
+          {authenticated ? (
+            <List
+              onLogout={() => {
+                localStorage.removeItem('logged')
+                setAuthenticated(false)
+              }}
+            />
+          ) : (
+            <Redirect to="/login" />
+          )}
+        </Route>
+
+        {/* catch‑all redirect back to login */}
+        <Route>
+          <Redirect to="/login" />
+        </Route>
+      </Switch>
+    </Router>
   )
 }
 

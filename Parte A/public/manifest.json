@@ -1,0 +1,22 @@
+{
+  "name": "MediCare+ Admin",
+  "short_name": "MediCare",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0C2340",
+  "icons": [
+    {
+      "src": "img.icons8.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img.icons8.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

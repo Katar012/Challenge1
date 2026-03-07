@@ -3,9 +3,10 @@ import { IonItem, IonInput, IonButton } from '@ionic/react';
 
 interface TaskInputProps {
   onAdd: (text: string) => void;
+  placeholder?: string;
 }
 
-const TaskInput: React.FC<TaskInputProps> = ({ onAdd }) => {
+const TaskInput: React.FC<TaskInputProps> = ({ onAdd, placeholder }) => {
   const [value, setValue] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
@@ -22,7 +23,7 @@ const TaskInput: React.FC<TaskInputProps> = ({ onAdd }) => {
       <IonItem>
         <IonInput
           value={value}
-          placeholder="Añadir nueva tarea"
+          placeholder={placeholder || "Añadir nueva tarea"}
           onIonChange={e => setValue(e.detail.value!)}
         />
         <IonButton type="submit" slot="end">

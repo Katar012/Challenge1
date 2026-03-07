@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { IonItem, IonLabel, IonCheckbox, IonButton } from '@ionic/react';
 
 export interface Task {
@@ -27,7 +28,9 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) => {
           color: task.completed ? 'var(--ion-color-medium)' : 'inherit',
         }}
       >
-        {task.text}
+        <Link to={`/tabs/visitas/${task.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          {task.text}
+        </Link>
       </IonLabel>
       <IonButton slot="end" color="danger" onClick={() => onDelete(task.id)}>
         Borrar

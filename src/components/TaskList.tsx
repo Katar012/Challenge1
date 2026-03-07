@@ -1,4 +1,5 @@
 import React from 'react';
+import { IonText } from '@ionic/react';
 import { Task } from './TaskItem';
 import TaskItem from './TaskItem';
 
@@ -12,7 +13,11 @@ interface TaskListProps {
 
 const TaskList: React.FC<TaskListProps> = ({ tasks, onToggle, onDelete }) => {
   if (tasks.length === 0) {
-    return <p style={{ padding: '1rem' }}>Aun no hay tareas.</p>;
+    return (
+      <div style={{ padding: '1rem' }}>
+        <IonText color="medium">Aun no hay tareas.</IonText>
+      </div>
+    );
   }
 
   return (

@@ -1,6 +1,9 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
 import './Home.css';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase/config';
 import TaskInput from '../components/TaskInput';
 import TaskList, { Task } from '../components/TaskList';
 
@@ -8,6 +11,16 @@ const STORAGE_KEY = 'todos';
 
 const Home: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const history = useHistory();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      history.push('/login');
+    } catch (err) {
+      console.error('Logout error:', err);
+    }
+  };
 
   
   useEffect(() => {
@@ -52,6 +65,9 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Lista de Tareas</IonTitle>
+          <IonButton slot="end" fill="clear" onClick={handleLogout}>
+            Logout
+          </IonButton>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

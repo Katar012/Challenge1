@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import {getAuth } from 'firebase/auth';
 import { initializeApp } from "firebase/app";
+import { getStorage } from 'firebase/storage';
+import { getFirestore } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -8,6 +10,7 @@ import { initializeApp } from "firebase/app";
 const firebaseConfig = {
   apiKey: "AIzaSyC1LJw1WbQAeQWwnDOsFyv6BnC1iz3lAsM",
   authDomain: "challenge5-d361c.firebaseapp.com",
+  databaseURL: "https://challenge5-d361c-default-rtdb.firebaseio.com",
   projectId: "challenge5-d361c",
   storageBucket: "challenge5-d361c.firebasestorage.app",
   messagingSenderId: "268175020248",
@@ -19,4 +22,8 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth();
 
-export {app, auth};
+const firebaseStorage = getStorage(app);
+
+const db = getFirestore();
+
+export {app, auth, firebaseStorage, db};

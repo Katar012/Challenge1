@@ -1,5 +1,7 @@
 {
   "name": "parcial2",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react-vite"
 }

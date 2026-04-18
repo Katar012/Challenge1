@@ -1,0 +1,63 @@
+.mission-card {
+  margin: 12px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mission-card.mission-completed {
+  opacity: 0.8;
+}
+
+.mission-header {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.mission-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+}
+
+.status-icon {
+  font-size: 32px;
+}
+
+.status-icon.pending {
+  color: #ffc409;
+}
+
+.status-icon.completed {
+  color: #2dd36f;
+}
+
+.mission-info {
+  flex: 1;
+}
+
+.mission-title {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mission-description {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.mission-points {
+  display: flex;
+  align-items: center;
+}
+
+.mission-action {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}

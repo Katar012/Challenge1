@@ -1,0 +1,39 @@
+.progress-container {
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  margin: 16px;
+  color: white;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.progress-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.progress-fraction {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+ion-progress-bar {
+  --progress-background: rgba(255, 255, 255, 0.3);
+  --progress-bar-background: white;
+  margin: 12px 0;
+  border-radius: 4px;
+  height: 6px;
+}
+
+.progress-percentage {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 8px;
+}

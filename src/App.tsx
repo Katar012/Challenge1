@@ -1,7 +1,13 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonApp, IonRouterOutlet, setupIonicReact, IonSpinner } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import MissionImageCapture from './pages/MissionImageCapture';
+import MissionMovement from './pages/MissionMovement';
+import MissionStayStill from './pages/MissionStayStill';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -35,19 +41,59 @@ import './theme/variables.css';
 
 setupIonicReact();
 
-const App: React.FC = () => (
+interface PrivateRouteProps {
+  component: React.ComponentType<any>;
+  path: string;
+  exact?: boolean;
+}
+
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...rest }) => {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <IonSpinner name="crescent" />
+      </div>
+    );
+  }
+
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        user ? <Component {...props} /> : <Redirect to="/login" />
+      }
+    />
+  );
+};
+
+const AppContent: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
+        <Route exact path="/login">
+          <Login />
         </Route>
+        <Route exact path="/register">
+          <Register />
+        </Route>
+        <PrivateRoute exact path="/home" component={Home} />
+        <PrivateRoute exact path="/mission-capture" component={MissionImageCapture} />
+        <PrivateRoute exact path="/mission-movement" component={MissionMovement} />
+        <PrivateRoute exact path="/mission-stay-still" component={MissionStayStill} />
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
+);
+
+const App: React.FC = () => (
+  <AuthProvider>
+    <AppContent />
+  </AuthProvider>
 );
 
 export default App;

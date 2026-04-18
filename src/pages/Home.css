@@ -1,0 +1,33 @@
+.points-card {
+  margin: 16px;
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  border-radius: 12px;
+}
+
+.points-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.points-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.points-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+ion-content > .leaderboard-card {
+  margin: 0 8px;
+}
+
+.missions-list {
+  padding: 0 8px 20px 8px;
+}

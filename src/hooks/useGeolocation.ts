@@ -46,7 +46,7 @@ export const useGeolocation = () => {
       // Solicitar permisos
       const permission = await Geolocation.requestPermissions();
       if (permission.location !== 'granted') {
-        setError('Permisos de ubicación denegados');
+        setError('Permisos de ubicación denegados. Por favor, habilita los permisos de ubicación en la configuración de tu dispositivo.');
         setLoading(false);
         return;
       }

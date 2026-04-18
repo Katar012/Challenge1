@@ -177,6 +177,15 @@ const MissionStayStill: React.FC = () => {
 
           {!missionStarted ? (
             <div style={{ textAlign: 'center', marginTop: '40px' }}>
+              {error && (
+                <IonCard color="danger" style={{ marginBottom: '16px' }}>
+                  <IonCardContent>
+                    <IonText>
+                      <p><strong>Error:</strong> {error}</p>
+                    </IonText>
+                  </IonCardContent>
+                </IonCard>
+              )}
               <IonButton
                 onClick={handleStartMission}
                 disabled={loading}
@@ -188,7 +197,7 @@ const MissionStayStill: React.FC = () => {
                     <IonSpinner name="crescent" />
                   </>
                 ) : (
-                  'Comenzar Misión'
+                  error ? 'Reintentar' : 'Comenzar Misión'
                 )}
               </IonButton>
             </div>
@@ -291,17 +300,6 @@ const MissionStayStill: React.FC = () => {
                 </IonButton>
               </div>
             </>
-          )}
-
-          {/* Mostrar errores */}
-          {error && (
-            <IonCard color="danger" style={{ marginTop: '16px' }}>
-              <IonCardContent>
-                <IonText>
-                  <p>{error}</p>
-                </IonText>
-              </IonCardContent>
-            </IonCard>
           )}
         </div>
       </IonContent>

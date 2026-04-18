@@ -34,7 +34,7 @@ const MissionMovement: React.FC = () => {
   } = useGeolocation();
 
   const [missionCompleted, setMissionCompleted] = useState(false);
-  const REQUIRED_DISTANCE = 30; // 30 metros
+  const REQUIRED_DISTANCE = 50; // 50 metros
   const canComplete = distance >= REQUIRED_DISTANCE;
 
   useEffect(() => {
@@ -138,6 +138,15 @@ const MissionMovement: React.FC = () => {
           {/* Estado del GPS */}
           {!tracking ? (
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
+              {error && (
+                <IonCard color="danger" style={{ marginBottom: '16px' }}>
+                  <IonCardContent>
+                    <IonText>
+                      <p><strong>Error:</strong> {error}</p>
+                    </IonText>
+                  </IonCardContent>
+                </IonCard>
+              )}
               <IonButton
                 onClick={handleStartMission}
                 disabled={loading}
@@ -151,7 +160,7 @@ const MissionMovement: React.FC = () => {
                 ) : (
                   <>
                     <IonIcon icon={navigateOutline} />
-                    Comenzar Rastreo
+                    {error ? 'Reintentar' : 'Comenzar Rastreo'}
                   </>
                 )}
               </IonButton>
@@ -258,16 +267,7 @@ const MissionMovement: React.FC = () => {
             </>
           )}
 
-          {/* Mostrar errores */}
-          {error && (
-            <IonCard color="danger" style={{ marginTop: '16px' }}>
-              <IonCardContent>
-                <IonText>
-                  <p>{error}</p>
-                </IonText>
-              </IonCardContent>
-            </IonCard>
-          )}
+
         </div>
       </IonContent>
     </IonPage>

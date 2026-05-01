@@ -1,5 +1,4 @@
 import React from 'react';
-import { IonItem, IonLabel, IonCheckbox, IonButton } from '@ionic/react';
 
 export interface Task {
   id: number;
@@ -15,24 +14,33 @@ interface TaskItemProps {
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) => {
   return (
-    <IonItem>
-      <IonCheckbox
-        slot="start"
+    <div className={`flex items-center gap-4 p-5 rounded-xl shadow-md transition-all transform hover:shadow-xl ${
+      task.completed
+        ? 'bg-gradient-to-r from-green-100 to-emerald-50 border-2 border-green-300'
+        : 'bg-gradient-to-r from-white to-blue-50 border-2 border-blue-200'
+    }`}>
+      <input
+        type="checkbox"
         checked={task.completed}
-        onIonChange={() => onToggle(task.id)}
+        onChange={() => onToggle(task.id)}
+        className="w-6 h-6 text-green-500 rounded-lg focus:ring-4 focus:ring-green-300 cursor-pointer transition-all"
       />
-      <IonLabel
-        style={{
-          textDecoration: task.completed ? 'line-through' : 'none',
-          color: task.completed ? 'var(--ion-color-medium)' : 'inherit',
-        }}
+      <span
+        className={`flex-1 text-lg font-medium transition-all ${
+          task.completed
+            ? 'line-through text-gray-400'
+            : 'text-gray-800'
+        }`}
       >
         {task.text}
-      </IonLabel>
-      <IonButton slot="end" color="danger" onClick={() => onDelete(task.id)}>
-        Borrar
-      </IonButton>
-    </IonItem>
+      </span>
+      <button
+        onClick={() => onDelete(task.id)}
+        className="px-4 py-2 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 hover:shadow-lg transition-all transform hover:scale-110 active:scale-95"
+      >
+        X
+      </button>
+    </div>
   );
 };
 

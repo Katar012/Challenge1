@@ -1,4 +1,3 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Home.css';
 import React, { useState, useEffect } from 'react';
 import TaskInput from '../components/TaskInput';
@@ -48,24 +47,25 @@ const Home: React.FC = () => {
   };
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Lista de Tareas</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Lista de Tareas</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <div style={{ padding: '1rem' }}>
-          <TaskInput onAdd={addTask} />
+    <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-500 to-pink-400">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-indigo-700 to-purple-700 shadow-2xl">
+        <div className="max-w-3xl mx-auto px-6 py-10">
+          <h1 className="text-5xl font-black text-white drop-shadow-lg mb-2">Lista de Tareas</h1>
+          <p className="text-indigo-100 text-lg font-medium">Organiza tus tareas de forma eficiente</p>
+        </div>
+      </div>
+      
+      {/* Main Content */}
+      <div className="max-w-3xl mx-auto px-6 py-12">
+        <TaskInput onAdd={addTask} />
+        <div className="relative">
+          {/* Animated background decoration */}
+          <div className="absolute inset-0 bg-white/10 rounded-3xl blur-2xl -z-10 animate-pulse"></div>
           <TaskList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask} />
         </div>
-      </IonContent>
-    </IonPage>
+      </div>
+    </div>
   );
 };
 
